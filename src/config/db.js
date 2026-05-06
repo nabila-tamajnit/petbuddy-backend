@@ -1,4 +1,4 @@
-// Responsabilité unique : gérer la connexion à MongoDB
+// Gérer la connexion à MongoDB
 const mongoose = require('mongoose');
 
 const connectDB = async () => {

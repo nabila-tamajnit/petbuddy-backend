@@ -1,5 +1,3 @@
-// Point d'entrée du serveur PetBuddy
-
 const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
