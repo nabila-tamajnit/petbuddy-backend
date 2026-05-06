@@ -1,0 +1,24 @@
+# Dépendances
+node_modules/
+
+# Variables d'environnement — NE JAMAIS COMMITER
+.env
+.env.*
+!.env.example
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Cache Node
+.npm
+.node_repl_history
+
+# Build / dist
+dist/
+build/
+
+# OS
+.DS_Store
+Thumbs.db
