@@ -1,5 +1,5 @@
 const animalService = require('../services/animal.service');
-// const HealthRecord = require('../models/HealthRecord.model');
+const HealthRecord = require('../models/HealthRecord.model');
 // const WellnessLog = require('../models/WellnessLog.model');
 // const Reminder = require('../models/Reminder.model');
 
@@ -168,11 +168,11 @@ const animalController = {
             if (!animal) return;
 
             // Supprimer aussi toutes les données liées à cet animal
-            // const HealthRecord = require('../models/HealthRecord.model');
+            const HealthRecord = require('../models/HealthRecord.model');
             // const WellnessLog = require('../models/WellnessLog.model');
             // const Reminder = require('../models/Reminder.model');
 
-            // await HealthRecord.deleteMany({ animalId: req.params.id });
+            await HealthRecord.deleteMany({ animalId: req.params.id });
             // await WellnessLog.deleteMany({ animalId: req.params.id });
             // await Reminder.deleteMany({ animalId: req.params.id });
             await animal.deleteOne();
