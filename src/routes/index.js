@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const authRoutes = require('./auth.routes');
+const userRoutes = require('./user.routes');
 
 router.get('/', (req, res) => {
     res.status(200).json({
@@ -9,7 +10,7 @@ router.get('/', (req, res) => {
     });
 });
 
-// Toutes les routes auth
 router.use('/auth', authRoutes);
+router.use('/users', userRoutes);
 
 module.exports = router;
