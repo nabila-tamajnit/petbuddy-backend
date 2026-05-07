@@ -1,5 +1,5 @@
 const router = require('express').Router();
-
+const authRoutes = require('./auth.routes');
 
 router.get('/', (req, res) => {
     res.status(200).json({
@@ -8,5 +8,8 @@ router.get('/', (req, res) => {
         status: 'online'
     });
 });
+
+// Toutes les routes auth
+router.use('/auth', authRoutes);
 
 module.exports = router;
