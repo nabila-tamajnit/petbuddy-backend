@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const authRoutes = require('./auth.routes');
 const userRoutes = require('./user.routes');
+const animalRoutes = require('./animal.routes');
 
 router.get('/', (req, res) => {
     res.status(200).json({
@@ -12,5 +13,6 @@ router.get('/', (req, res) => {
 
 router.use('/auth', authRoutes);
 router.use('/users', userRoutes);
+router.use('/animals', animalRoutes);
 
 module.exports = router;

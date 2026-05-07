@@ -1,5 +1,5 @@
 const User = require('../models/User.model');
-// const Animal = require('../models/Animal.model');
+const Animal = require('../models/Animal.model');
 // const HealthRecord = require('../models/HealthRecord.model');
 // const WellnessLog = require('../models/WellnessLog.model');
 // const Reminder = require('../models/Reminder.model');
@@ -19,7 +19,7 @@ const userService = {
         // await WellnessLog.deleteMany({ userId });
         // await HealthRecord.deleteMany({ userId });
         // await Reminder.deleteMany({ userId });
-        // await Animal.deleteMany({ userId });
+        await Animal.deleteMany({ userId });
 
         // Étape 2 — le user lui-même
         await User.findByIdAndDelete(userId);
