@@ -2,7 +2,7 @@ const User = require('../models/User.model');
 const Animal = require('../models/Animal.model');
 const HealthRecord = require('../models/HealthRecord.model');
 const WellnessLog = require('../models/WellnessLog.model');
-// const Reminder = require('../models/Reminder.model');
+const Reminder = require('../models/Reminder.model');
 
 const userService = {
 
@@ -18,7 +18,7 @@ const userService = {
         // Étape 1 — toutes les données liées à ce user
         await WellnessLog.deleteMany({ userId });
         await HealthRecord.deleteMany({ userId });
-        // await Reminder.deleteMany({ userId });
+        await Reminder.deleteMany({ userId });
         await Animal.deleteMany({ userId });
 
         // Étape 2 — le user lui-même
