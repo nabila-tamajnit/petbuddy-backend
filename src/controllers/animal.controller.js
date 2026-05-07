@@ -1,6 +1,6 @@
 const animalService = require('../services/animal.service');
 const HealthRecord = require('../models/HealthRecord.model');
-// const WellnessLog = require('../models/WellnessLog.model');
+const WellnessLog = require('../models/WellnessLog.model');
 // const Reminder = require('../models/Reminder.model');
 
 // Vérifie que l'animal existe ET appartient au user connecté
@@ -169,11 +169,11 @@ const animalController = {
 
             // Supprimer aussi toutes les données liées à cet animal
             const HealthRecord = require('../models/HealthRecord.model');
-            // const WellnessLog = require('../models/WellnessLog.model');
+            const WellnessLog = require('../models/WellnessLog.model');
             // const Reminder = require('../models/Reminder.model');
 
             await HealthRecord.deleteMany({ animalId: req.params.id });
-            // await WellnessLog.deleteMany({ animalId: req.params.id });
+            await WellnessLog.deleteMany({ animalId: req.params.id });
             // await Reminder.deleteMany({ animalId: req.params.id });
             await animal.deleteOne();
 

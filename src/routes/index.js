@@ -3,6 +3,7 @@ const authRoutes = require('./auth.routes');
 const userRoutes = require('./user.routes');
 const animalRoutes = require('./animal.routes');
 const healthRecordRoutes = require('./healthRecord.routes');
+const wellnessRoutes = require('./wellness.routes');
 
 router.get('/', (req, res) => {
     res.status(200).json({
@@ -15,8 +16,7 @@ router.get('/', (req, res) => {
 router.use('/auth', authRoutes);
 router.use('/users', userRoutes);
 router.use('/animals', animalRoutes);
-
-// Route imbriquée — les health records appartiennent à un animal
 router.use('/animals/:animalId/health-records', healthRecordRoutes);
+router.use('/animals/:animalId/wellness', wellnessRoutes);
 
 module.exports = router;
