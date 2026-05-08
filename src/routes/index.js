@@ -5,6 +5,7 @@ const animalRoutes = require('./animal.routes');
 const healthRecordRoutes = require('./healthRecord.routes');
 const wellnessRoutes = require('./wellness.routes');
 const reminderRoutes = require('./reminder.routes');
+const tipRoutes = require('./tip.routes');
 
 router.get('/', (req, res) => {
     res.status(200).json({
@@ -20,5 +21,6 @@ router.use('/animals', animalRoutes);
 router.use('/animals/:animalId/health-records', healthRecordRoutes);
 router.use('/animals/:animalId/wellness', wellnessRoutes);
 router.use('/animals/:animalId/reminders', reminderRoutes);
+router.use('/tips', tipRoutes);
 
 module.exports = router;
