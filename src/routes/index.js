@@ -5,6 +5,8 @@ const animalRoutes = require('./animal.routes');
 const healthRecordRoutes = require('./healthRecord.routes');
 const wellnessRoutes = require('./wellness.routes');
 const reminderRoutes = require('./reminder.routes');
+const reminderController = require('../controllers/reminder.controller');
+const authenticationMiddleware = require('../middlewares/authentication.middleware');
 const tipRoutes = require('./tip.routes');
 
 router.get('/', (req, res) => {
@@ -20,6 +22,7 @@ router.use('/users', userRoutes);
 router.use('/animals', animalRoutes);
 router.use('/animals/:animalId/health-records', healthRecordRoutes);
 router.use('/animals/:animalId/wellness', wellnessRoutes);
+router.get('/reminders/pending', authenticationMiddleware(), reminderController.getPending);
 router.use('/animals/:animalId/reminders', reminderRoutes);
 router.use('/tips', tipRoutes);
 
