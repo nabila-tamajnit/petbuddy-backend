@@ -157,6 +157,17 @@ const animalController = {
         }
     },
 
+    // GET /api/animals/archived
+    getArchived: async (req, res) => {
+        try {
+            const animals = await animalService.findArchivedByUser(req.user.id);
+            res.status(200).json({ count: animals.length, animals });
+        } catch (err) {
+            console.error(err);
+            res.status(500).json({ statusCode: 500, message: 'Erreur serveur' });
+        }
+    },
+
     // DELETE définitif /api/animals/:id/permanent
     permanentDelete: async (req, res) => {
         try {
