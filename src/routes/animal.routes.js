@@ -8,6 +8,8 @@ router.route('/')
     .get(animalController.getAll)
     .post(animalController.create);
 
+router.get('/archived', animalController.getArchived);    
+
 router.route('/:id')
     .get(animalController.getById)
     .put(animalController.update)
