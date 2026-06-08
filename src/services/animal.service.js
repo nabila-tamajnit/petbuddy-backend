@@ -38,6 +38,12 @@ const animalService = {
         );
     },
 
+    // Récupère les animaux archivés d'un user
+    findArchivedByUser: async (userId) => {
+        return await Animal.find({ userId, isActive: false })
+            .sort({ updatedAt: -1 });
+    },
+
     // Restaure un animal archivé
     restore: async (animalId) => {
         return await Animal.findByIdAndUpdate(
