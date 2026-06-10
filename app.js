@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
@@ -8,13 +9,11 @@ const router = require('./src/routes/index');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// ── Sécurité ──────────────────────────────────────────────
+// ────────── Sécurité ──────────
 app.use(helmet());
 
-// ── CORS ──────────────────────────────────────────────────
-const allowedOrigins = process.env.FRONTEND_URL
-    ? process.env.FRONTEND_URL.split(',')
-    : ['http://localhost:5173'];
+// ────────── CORS ──────────
+const allowedOrigins = (process.env.FRONTEND_URL ?? 'http://localhost:5173').split(',');
 
 app.use(cors({
     origin: (origin, callback) => {
@@ -26,10 +25,10 @@ app.use(cors({
     credentials: true,
 }));
 
-// ── Rate limiting sur l'auth uniquement ───────────────────
+// ────────── Limitation de débit ──────────
 const authLimiter = rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 10,                   // 10 tentatives max par IP
+    windowMs: 15 * 60 * 1000, // 15 min
+    max: 10, // 10 tentatives max par IP
     standardHeaders: true,
     legacyHeaders: false,
     message: {
@@ -38,16 +37,25 @@ const authLimiter = rateLimit({
     }
 });
 
-// ⚠️ Le limiter AVANT le router général — ordre critique
+// -- Le limiter  (avant les routes d'auth) --
 app.use('/api/auth', authLimiter);
 
-// ── Parsing JSON ──────────────────────────────────────────
+// ── Parsing JSON ──
 app.use(express.json());
 
-// ── Routes ────────────────────────────────────────────────
+// ── Routes ──
 app.use('/api', router);
 
-// ── Démarrage ─────────────────────────────────────────────
+// -- handler d'erreurs global (en dernier) --
+app.use((err, req, res, next) => {
+    console.error(err);
+    res.status(err.status ?? 500).json({
+        statusCode: err.status ?? 500,
+        message: err.message ?? 'Erreur serveur'
+    });
+});
+
+// ── Démarrage ──
 const start = async () => {
     await connectDB();
     app.listen(PORT, () => {
